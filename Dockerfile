@@ -8,7 +8,7 @@ ENV GOSU_VERSION=1.10 \
 
 RUN useradd -r ripple \
  && apt-get update \
- && apt-get install -y bash yum-utils alien gnupg \
+ && apt-get install -y bash yum-utils alien \
  && gpg --keyserver pgp.mit.edu --recv-keys "B42F6819007F00F88E364FD4036A9C25BF357DD4" \
  || gpg --keyserver keyserver.pgp.com --recv-keys "B42F6819007F00F88E364FD4036A9C25BF357DD4" \
  || gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "B42F6819007F00F88E364FD4036A9C25BF357DD4" \
@@ -23,7 +23,7 @@ RUN useradd -r ripple \
  && curl -o /usr/local/bin/gosu.asc -fSL https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-$(dpkg --print-architecture).asc \
  && gpg --verify /usr/local/bin/gosu.asc \
  && rm /usr/local/bin/gosu.asc \
- && apt-get purge yum-utils alien gnupg -y \
+ && apt-get purge yum-utils alien -y \
  && apt-get autoremove -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
